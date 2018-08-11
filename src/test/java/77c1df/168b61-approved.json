@@ -1,0 +1,315 @@
+/*RaceApiServiceTest.getAllBoatTypes*/
+[
+  {
+    "id": 1,
+    "btype": "405",
+    "fleet": "Handicap",
+    "pyn": 1088
+  },
+  {
+    "id": 2,
+    "btype": "420",
+    "fleet": "Handicap",
+    "pyn": 1111
+  },
+  {
+    "id": 102,
+    "btype": "Lightning",
+    "fleet": "Handicap",
+    "pyn": 1170
+  },
+  {
+    "id": 16,
+    "btype": "Cadet",
+    "fleet": "Handicap",
+    "pyn": 1435
+  },
+  {
+    "id": 20,
+    "btype": "Comet",
+    "fleet": "Handicap",
+    "pyn": 1205
+  },
+  {
+    "id": 21,
+    "btype": "Comet Duo",
+    "fleet": "Handicap",
+    "pyn": 1178
+  },
+  {
+    "id": 22,
+    "btype": "Comet Trio",
+    "fleet": "Handicap",
+    "pyn": 1085
+  },
+  {
+    "id": 24,
+    "btype": "Enterprise",
+    "fleet": "Handicap",
+    "pyn": 1116
+  },
+  {
+    "id": 25,
+    "btype": "Europe",
+    "fleet": "Handicap",
+    "pyn": 1145
+  },
+  {
+    "id": 100,
+    "btype": " N12 3101-3414",
+    "fleet": "National 12",
+    "pyn": 1104
+  },
+  {
+    "id": 98,
+    "btype": "N12 1153-2073",
+    "fleet": "National 12",
+    "pyn": 1145
+  },
+  {
+    "id": 32,
+    "btype": "Graduate",
+    "fleet": "Handicap",
+    "pyn": 1129
+  },
+  {
+    "id": 33,
+    "btype": "Gull",
+    "fleet": "Handicap",
+    "pyn": 1363
+  },
+  {
+    "id": 34,
+    "btype": "Heron two-handed",
+    "fleet": "Heron/Mirror",
+    "pyn": 1366
+  },
+  {
+    "id": 99,
+    "btype": " N12 2074-2511 ",
+    "fleet": "National 12",
+    "pyn": 1135
+  },
+  {
+    "id": 41,
+    "btype": "Lark",
+    "fleet": "Handicap",
+    "pyn": 1070
+  },
+  {
+    "id": 42,
+    "btype": "Laser",
+    "fleet": "Laser",
+    "pyn": 1098
+  },
+  {
+    "id": 45,
+    "btype": "Laser 4.7",
+    "fleet": "Laser",
+    "pyn": 1200
+  },
+  {
+    "id": 48,
+    "btype": "Laser EPS",
+    "fleet": "Handicap",
+    "pyn": 1030
+  },
+  {
+    "id": 49,
+    "btype": "Laser II",
+    "fleet": "Handicap",
+    "pyn": 1065
+  },
+  {
+    "id": 50,
+    "btype": "Laser Pico two handed",
+    "fleet": "Handicap",
+    "pyn": 1335
+  },
+  {
+    "id": 51,
+    "btype": "Laser Pico single-handed",
+    "fleet": "Handicap",
+    "pyn": 1330
+  },
+  {
+    "id": 52,
+    "btype": "Laser Radial",
+    "fleet": "Laser",
+    "pyn": 1142
+  },
+  {
+    "id": 58,
+    "btype": "Miracle",
+    "fleet": "Handicap",
+    "pyn": 1200
+  },
+  {
+    "id": 59,
+    "btype": "Mirror two handed",
+    "fleet": "Heron/Mirror",
+    "pyn": 1383
+  },
+  {
+    "id": 60,
+    "btype": "Mirror single-handed   spin",
+    "fleet": "Heron/Mirror",
+    "pyn": 1380
+  },
+  {
+    "id": 61,
+    "btype": "Mirror single-handed no spin",
+    "fleet": "Heron/Mirror",
+    "pyn": 1390
+  },
+  {
+    "id": 101,
+    "btype": "N12 1-1152",
+    "fleet": "National 12",
+    "pyn": 1170
+  },
+  {
+    "id": 65,
+    "btype": "OK",
+    "fleet": "Handicap",
+    "pyn": 1104
+  },
+  {
+    "id": 66,
+    "btype": "Optimist",
+    "fleet": "Handicap",
+    "pyn": 1655
+  },
+  {
+    "id": 68,
+    "btype": "Otter two-handed",
+    "fleet": "Handicap",
+    "pyn": 1275
+  },
+  {
+    "id": 72,
+    "btype": "RS 200",
+    "fleet": "Handicap",
+    "pyn": 1046
+  },
+  {
+    "id": 83,
+    "btype": "Solo",
+    "fleet": "Solo",
+    "pyn": 1143
+  },
+  {
+    "id": 87,
+    "btype": "Streaker",
+    "fleet": "Streaker",
+    "pyn": 1128
+  },
+  {
+    "id": 109,
+    "btype": "Wanderer",
+    "fleet": "Handicap",
+    "pyn": 1190
+  },
+  {
+    "id": 91,
+    "btype": "Topaz Uno  single-handed",
+    "fleet": "Handicap",
+    "pyn": 1251
+  },
+  {
+    "id": 92,
+    "btype": "Topper",
+    "fleet": "Topper",
+    "pyn": 1358
+  },
+  {
+    "id": 96,
+    "btype": "Otter single-handed",
+    "fleet": "Handicap",
+    "pyn": 1250
+  },
+  {
+    "id": 97,
+    "btype": "Heron single-handed",
+    "fleet": "Heron/Mirror",
+    "pyn": 1345
+  },
+  {
+    "id": 112,
+    "btype": "N12 3415-3518",
+    "fleet": "National 12",
+    "pyn": 1089
+  },
+  {
+    "id": 105,
+    "btype": "RS Feva",
+    "fleet": "Handicap",
+    "pyn": 1240
+  },
+  {
+    "id": 106,
+    "btype": "RS Vareo",
+    "fleet": "Handicap",
+    "pyn": 1090
+  },
+  {
+    "id": 107,
+    "btype": "Scorpion",
+    "fleet": "Handicap",
+    "pyn": 1040
+  },
+  {
+    "id": 108,
+    "btype": "Laser Pico  Race (single-handed)",
+    "fleet": "Handicap",
+    "pyn": 1260
+  },
+  {
+    "id": 110,
+    "btype": "Laser Pico  Race (two-handed)",
+    "fleet": "Handicap",
+    "pyn": 1265
+  },
+  {
+    "id": 103,
+    "btype": "Deleted Boat Type",
+    "fleet": "Handicap",
+    "pyn": 1250
+  },
+  {
+    "id": 113,
+    "btype": "RS Tera Sport",
+    "fleet": "Handicap",
+    "pyn": 1432
+  },
+  {
+    "id": 114,
+    "btype": "N12 3519 onwards",
+    "fleet": "National 12",
+    "pyn": 1064
+  },
+  {
+    "id": 53,
+    "btype": "GP14",
+    "fleet": "Handicap",
+    "pyn": 1133
+  },
+  {
+    "id": 54,
+    "btype": "Byte",
+    "fleet": "Handicap",
+    "pyn": 1144
+  },
+  {
+    "id": 55,
+    "btype": "British Moth",
+    "fleet": "",
+    "pyn": 1155
+  },
+  {
+    "id": 56,
+    "btype": "N12 2512-3100",
+    "fleet": "National 12",
+    "pyn": 1130
+  }
+]

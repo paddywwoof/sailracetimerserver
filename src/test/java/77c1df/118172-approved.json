@@ -1,0 +1,17 @@
+/*RaceApiServiceTest.getResult*/
+{
+  "id": 3605,
+  "individualID": 37,
+  "nlaps": 5,
+  "rtime": {
+    "seconds": 3534,
+    "nanos": 0
+  },
+  "adjtime": {
+    "seconds": 3464,
+    "nanos": 0
+  },
+  "posn": 2,
+  "raceID": 608,
+  "fleet": "Handicap"
+}

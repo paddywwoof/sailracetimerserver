@@ -1,0 +1,363 @@
+/*RaceApiServiceTest.getAllSeries*/
+[
+  {
+    "id": 18,
+    "name": "Wednesday 2008",
+    "ntocount": 7,
+    "weight": 15
+  },
+  {
+    "id": 19,
+    "name": "Sunday 2008",
+    "ntocount": 12,
+    "weight": 16
+  },
+  {
+    "id": 14,
+    "name": "Frostbite 2007",
+    "ntocount": 6,
+    "weight": 5
+  },
+  {
+    "id": 13,
+    "name": "Wednesday 2007",
+    "ntocount": 8,
+    "weight": 3
+  },
+  {
+    "id": 12,
+    "name": "Sunday 2007",
+    "ntocount": 12,
+    "weight": 2
+  },
+  {
+    "id": 11,
+    "name": "Saturday 2007",
+    "ntocount": 14,
+    "weight": 1
+  },
+  {
+    "id": 20,
+    "name": "Saturday 2008",
+    "ntocount": 14,
+    "weight": 17
+  },
+  {
+    "id": 15,
+    "name": "Commodore W.E. 07",
+    "ntocount": 5,
+    "weight": 4
+  },
+  {
+    "id": 17,
+    "name": "Frostbite 2008",
+    "ntocount": 6,
+    "weight": 10
+  },
+  {
+    "id": 25,
+    "name": "Saturday 2009",
+    "ntocount": 14,
+    "weight": 20
+  },
+  {
+    "id": 24,
+    "name": "Sunday 2009",
+    "ntocount": 12,
+    "weight": 29
+  },
+  {
+    "id": 23,
+    "name": "Wednesday 2009",
+    "ntocount": 8,
+    "weight": 28
+  },
+  {
+    "id": 22,
+    "name": "Frostbite 2009",
+    "ntocount": 6,
+    "weight": 20
+  },
+  {
+    "id": 26,
+    "name": "Frostbite 2010",
+    "ntocount": 6,
+    "weight": 31
+  },
+  {
+    "id": 27,
+    "name": "Wednesday 2010",
+    "ntocount": 8,
+    "weight": 35
+  },
+  {
+    "id": 28,
+    "name": "Saturday 2010",
+    "ntocount": 14,
+    "weight": 38
+  },
+  {
+    "id": 29,
+    "name": "Sunday 2010",
+    "ntocount": 12,
+    "weight": 33
+  },
+  {
+    "id": 30,
+    "name": "Saturday 2011",
+    "ntocount": 14,
+    "weight": 48
+  },
+  {
+    "id": 31,
+    "name": "Sunday 2011",
+    "ntocount": 12,
+    "weight": 42
+  },
+  {
+    "id": 32,
+    "name": "Wednesday 2011",
+    "ntocount": 8,
+    "weight": 44
+  },
+  {
+    "id": 33,
+    "name": "Frostbite 2011",
+    "ntocount": 6,
+    "weight": 40
+  },
+  {
+    "id": 34,
+    "name": " Saturday A 2012",
+    "ntocount": 8,
+    "weight": 56
+  },
+  {
+    "id": 35,
+    "name": " Saturday B 2012",
+    "ntocount": 8,
+    "weight": 52
+  },
+  {
+    "id": 36,
+    "name": " July 2012",
+    "ntocount": 30,
+    "weight": 53
+  },
+  {
+    "id": 37,
+    "name": " Sunday A 2012",
+    "ntocount": 8,
+    "weight": 55
+  },
+  {
+    "id": 38,
+    "name": " Sunday B 2012",
+    "ntocount": 8,
+    "weight": 51
+  },
+  {
+    "id": 39,
+    "name": " Wednesday 2012",
+    "ntocount": 8,
+    "weight": 54
+  },
+  {
+    "id": 40,
+    "name": " Frostbite 2012",
+    "ntocount": 6,
+    "weight": 50
+  },
+  {
+    "id": 47,
+    "name": " Frostbite 2013",
+    "ntocount": 6,
+    "weight": 70
+  },
+  {
+    "id": 45,
+    "name": " Sunday B 2013",
+    "ntocount": 8,
+    "weight": 65
+  },
+  {
+    "id": 46,
+    "name": " Wednesday 2013",
+    "ntocount": 8,
+    "weight": 67
+  },
+  {
+    "id": 43,
+    "name": " July 2013",
+    "ntocount": 30,
+    "weight": 66
+  },
+  {
+    "id": 44,
+    "name": " Sunday A 2013",
+    "ntocount": 8,
+    "weight": 68
+  },
+  {
+    "id": 42,
+    "name": " Saturday B 2013",
+    "ntocount": 8,
+    "weight": 64
+  },
+  {
+    "id": 41,
+    "name": " Saturday A 2013",
+    "ntocount": 8,
+    "weight": 69
+  },
+  {
+    "id": 48,
+    "name": " Saturday 2014",
+    "ntocount": 12,
+    "weight": 73
+  },
+  {
+    "id": 49,
+    "name": " Sunday 2014",
+    "ntocount": 12,
+    "weight": 72
+  },
+  {
+    "id": 50,
+    "name": " Wednesday 2014",
+    "ntocount": 8,
+    "weight": 71
+  },
+  {
+    "id": 51,
+    "name": " Frostbite 2014",
+    "ntocount": 6,
+    "weight": 70
+  },
+  {
+    "id": 52,
+    "name": "Misc",
+    "ntocount": 0,
+    "weight": 0
+  },
+  {
+    "id": 53,
+    "name": "Saturday 2015",
+    "ntocount": 12,
+    "weight": 77
+  },
+  {
+    "id": 54,
+    "name": "Sunday 2015",
+    "ntocount": 12,
+    "weight": 76
+  },
+  {
+    "id": 55,
+    "name": "Wednesday 2015",
+    "ntocount": 8,
+    "weight": 75
+  },
+  {
+    "id": 56,
+    "name": "Frostbite 2015",
+    "ntocount": 6,
+    "weight": 74
+  },
+  {
+    "id": 57,
+    "name": "Saturday 2016",
+    "ntocount": 12,
+    "weight": 85
+  },
+  {
+    "id": 58,
+    "name": "Sunday 2016",
+    "ntocount": 12,
+    "weight": 84
+  },
+  {
+    "id": 59,
+    "name": "Wednesday 2016",
+    "ntocount": 8,
+    "weight": 83
+  },
+  {
+    "id": 60,
+    "name": "Frostbite 2016",
+    "ntocount": 6,
+    "weight": 82
+  },
+  {
+    "id": 61,
+    "name": "Misc 2016",
+    "ntocount": 0,
+    "weight": 81
+  },
+  {
+    "id": 62,
+    "name": "-",
+    "ntocount": 0,
+    "weight": 0
+  },
+  {
+    "id": 63,
+    "name": "Saturday 2017",
+    "ntocount": 12,
+    "weight": 90
+  },
+  {
+    "id": 64,
+    "name": "Sunday 2017",
+    "ntocount": 12,
+    "weight": 89
+  },
+  {
+    "id": 65,
+    "name": "Wednesday 2017",
+    "ntocount": 8,
+    "weight": 88
+  },
+  {
+    "id": 66,
+    "name": "Frostbite 2017",
+    "ntocount": 6,
+    "weight": 87
+  },
+  {
+    "id": 67,
+    "name": "Misc 2017",
+    "ntocount": 0,
+    "weight": 86
+  },
+  {
+    "id": 68,
+    "name": "Saturday 2018",
+    "ntocount": 12,
+    "weight": 100
+  },
+  {
+    "id": 69,
+    "name": "Sunday 2018",
+    "ntocount": 12,
+    "weight": 99
+  },
+  {
+    "id": 70,
+    "name": "Wednesday 2018",
+    "ntocount": 8,
+    "weight": 98
+  },
+  {
+    "id": 71,
+    "name": "Frostbite 2018",
+    "ntocount": 6,
+    "weight": 97
+  },
+  {
+    "id": 72,
+    "name": "Misc 2018",
+    "ntocount": 0,
+    "weight": 96
+  }
+]

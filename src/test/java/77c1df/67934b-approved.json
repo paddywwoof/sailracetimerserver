@@ -1,0 +1,19 @@
+/*RaceApiServiceTest.getRace*/
+{
+  "id": 535,
+  "seriesID": 11,
+  "rdate": {
+    "year": 2007,
+    "month": 3,
+    "day": 24
+  },
+  "name": "SAT 24 3 2007 R1",
+  "wholelegs": 6,
+  "partlegs": 1,
+  "ood": "P Gaunt",
+  "aood": "F Morgan",
+  "winddir": "N",
+  "windstr": "18",
+  "comments": "",
+  "flg": true
+}
