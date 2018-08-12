@@ -73,6 +73,7 @@ task fatJar(type: Jar) {
     manifest {
         attributes 'Main-Class': 'net.mfashby.sailracetimerserver.ServerKt'
     }
+    destinationDir = file("$rootDir/deploy/apiserver")
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar

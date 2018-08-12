@@ -1,4 +1,4 @@
-/*RaceApiServiceTest.getRace*/
+/*net.mfashby.sailracetimerserver.RaceApiServiceTest.getRace*/
 {
   "id": 535,
   "seriesID": 11,
@@ -15,5 +15,5 @@
   "winddir": "N",
   "windstr": "18",
   "comments": "",
-  "flg": true
+  "finished": true
 }

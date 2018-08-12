@@ -1,0 +1,123 @@
+/*net.mfashby.sailracetimerserver.RaceApiServiceTest.getSeriesWithSort*/
+[
+  {
+    "id": 68,
+    "name": "Saturday 2018",
+    "ntocount": 12,
+    "weight": 100
+  },
+  {
+    "id": 69,
+    "name": "Sunday 2018",
+    "ntocount": 12,
+    "weight": 99
+  },
+  {
+    "id": 70,
+    "name": "Wednesday 2018",
+    "ntocount": 8,
+    "weight": 98
+  },
+  {
+    "id": 71,
+    "name": "Frostbite 2018",
+    "ntocount": 6,
+    "weight": 97
+  },
+  {
+    "id": 72,
+    "name": "Misc 2018",
+    "ntocount": 0,
+    "weight": 96
+  },
+  {
+    "id": 63,
+    "name": "Saturday 2017",
+    "ntocount": 12,
+    "weight": 90
+  },
+  {
+    "id": 64,
+    "name": "Sunday 2017",
+    "ntocount": 12,
+    "weight": 89
+  },
+  {
+    "id": 65,
+    "name": "Wednesday 2017",
+    "ntocount": 8,
+    "weight": 88
+  },
+  {
+    "id": 66,
+    "name": "Frostbite 2017",
+    "ntocount": 6,
+    "weight": 87
+  },
+  {
+    "id": 67,
+    "name": "Misc 2017",
+    "ntocount": 0,
+    "weight": 86
+  },
+  {
+    "id": 57,
+    "name": "Saturday 2016",
+    "ntocount": 12,
+    "weight": 85
+  },
+  {
+    "id": 58,
+    "name": "Sunday 2016",
+    "ntocount": 12,
+    "weight": 84
+  },
+  {
+    "id": 59,
+    "name": "Wednesday 2016",
+    "ntocount": 8,
+    "weight": 83
+  },
+  {
+    "id": 60,
+    "name": "Frostbite 2016",
+    "ntocount": 6,
+    "weight": 82
+  },
+  {
+    "id": 61,
+    "name": "Misc 2016",
+    "ntocount": 0,
+    "weight": 81
+  },
+  {
+    "id": 53,
+    "name": "Saturday 2015",
+    "ntocount": 12,
+    "weight": 77
+  },
+  {
+    "id": 54,
+    "name": "Sunday 2015",
+    "ntocount": 12,
+    "weight": 76
+  },
+  {
+    "id": 55,
+    "name": "Wednesday 2015",
+    "ntocount": 8,
+    "weight": 75
+  },
+  {
+    "id": 56,
+    "name": "Frostbite 2015",
+    "ntocount": 6,
+    "weight": 74
+  },
+  {
+    "id": 48,
+    "name": " Saturday 2014",
+    "ntocount": 12,
+    "weight": 73
+  }
+]

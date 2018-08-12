@@ -1,0 +1,15 @@
+/*net.mfashby.sailracetimerserver.RaceApiServiceTest.getSeries*/
+[
+  {
+    "id": 18,
+    "name": "Wednesday 2008",
+    "ntocount": 7,
+    "weight": 15
+  },
+  {
+    "id": 19,
+    "name": "Sunday 2008",
+    "ntocount": 12,
+    "weight": 16
+  }
+]

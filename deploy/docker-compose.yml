@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  db:
+    build: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    ports:
+      - 8081:8080
+
+  api-server:
+    build: apiserver
+    environment:
+      - DB_URL=jdbc:mysql://db:3306/yxsecnyo_ysc
+      - DB_USER=root
+      - DB_PASS=example
+      - SVR_PORT=8080
+      - SVR_HOST=0.0.0.0
+    ports:
+      - 8080:8080

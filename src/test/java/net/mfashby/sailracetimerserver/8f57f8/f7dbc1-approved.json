@@ -1,0 +1,291 @@
+/*net.mfashby.sailracetimerserver.RaceApiServiceTest.queryResult*/
+[
+  {
+    "id": 3498,
+    "individualID": 219,
+    "nlaps": 2,
+    "rtime": {
+      "seconds": 86400,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 86400,
+      "nanos": 0
+    },
+    "posn": 15,
+    "raceID": 535,
+    "fleet": "Laser"
+  },
+  {
+    "id": 3497,
+    "individualID": 19,
+    "nlaps": 4,
+    "rtime": {
+      "seconds": 2572,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 2698,
+      "nanos": 0
+    },
+    "posn": 1,
+    "raceID": 535,
+    "fleet": "Laser"
+  },
+  {
+    "id": 3499,
+    "individualID": 13,
+    "nlaps": 4,
+    "rtime": {
+      "seconds": 86400,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 86400,
+      "nanos": 0
+    },
+    "posn": 15,
+    "raceID": 535,
+    "fleet": "Laser"
+  },
+  {
+    "id": 3500,
+    "individualID": 37,
+    "nlaps": 4,
+    "rtime": {
+      "seconds": 2810,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 2901,
+      "nanos": 0
+    },
+    "posn": 3,
+    "raceID": 535,
+    "fleet": "Handicap"
+  },
+  {
+    "id": 3501,
+    "individualID": 179,
+    "nlaps": 4,
+    "rtime": {
+      "seconds": 2924,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 2879,
+      "nanos": 0
+    },
+    "posn": 2,
+    "raceID": 535,
+    "fleet": "Handicap"
+  },
+  {
+    "id": 3502,
+    "individualID": 211,
+    "nlaps": 3,
+    "rtime": {
+      "seconds": 2677,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 2988,
+      "nanos": 0
+    },
+    "posn": 4,
+    "raceID": 535,
+    "fleet": "Topper"
+  },
+  {
+    "id": 3503,
+    "individualID": 83,
+    "nlaps": 3,
+    "rtime": {
+      "seconds": 2681,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 2993,
+      "nanos": 0
+    },
+    "posn": 5,
+    "raceID": 535,
+    "fleet": "Topper"
+  },
+  {
+    "id": 3504,
+    "individualID": 251,
+    "nlaps": 2,
+    "rtime": {
+      "seconds": 86400,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 86400,
+      "nanos": 0
+    },
+    "posn": 15,
+    "raceID": 535,
+    "fleet": "Handicap"
+  },
+  {
+    "id": 3505,
+    "individualID": 146,
+    "nlaps": 3,
+    "rtime": {
+      "seconds": 2544,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 3419,
+      "nanos": 0
+    },
+    "posn": 6,
+    "raceID": 535,
+    "fleet": "Streaker"
+  },
+  {
+    "id": 3532,
+    "individualID": 220,
+    "nlaps": 5,
+    "rtime": {
+      "seconds": 3466,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 3247,
+      "nanos": 0
+    },
+    "posn": 5,
+    "raceID": 537,
+    "fleet": "Laser"
+  },
+  {
+    "id": 3533,
+    "individualID": 19,
+    "nlaps": 5,
+    "rtime": {
+      "seconds": 3010,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 2820,
+      "nanos": 0
+    },
+    "posn": 1,
+    "raceID": 537,
+    "fleet": "Laser"
+  },
+  {
+    "id": 3534,
+    "individualID": 224,
+    "nlaps": 5,
+    "rtime": {
+      "seconds": 3056,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 2863,
+      "nanos": 0
+    },
+    "posn": 2,
+    "raceID": 537,
+    "fleet": "Laser"
+  },
+  {
+    "id": 3535,
+    "individualID": 179,
+    "nlaps": 4,
+    "rtime": {
+      "seconds": 3103,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 3292,
+      "nanos": 0
+    },
+    "posn": 6,
+    "raceID": 537,
+    "fleet": "Handicap"
+  },
+  {
+    "id": 3536,
+    "individualID": 55,
+    "nlaps": 5,
+    "rtime": {
+      "seconds": 3390,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 3051,
+      "nanos": 0
+    },
+    "posn": 4,
+    "raceID": 537,
+    "fleet": "Solo"
+  },
+  {
+    "id": 3537,
+    "individualID": 83,
+    "nlaps": 2,
+    "rtime": {
+      "seconds": 86400,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 86400,
+      "nanos": 0
+    },
+    "posn": 15,
+    "raceID": 537,
+    "fleet": "Topper"
+  },
+  {
+    "id": 3538,
+    "individualID": 133,
+    "nlaps": 4,
+    "rtime": {
+      "seconds": 3163,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 2874,
+      "nanos": 0
+    },
+    "posn": 3,
+    "raceID": 537,
+    "fleet": "Heron/Mirror"
+  },
+  {
+    "id": 3539,
+    "individualID": 251,
+    "nlaps": 3,
+    "rtime": {
+      "seconds": 3190,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 3991,
+      "nanos": 0
+    },
+    "posn": 8,
+    "raceID": 537,
+    "fleet": "Handicap"
+  },
+  {
+    "id": 3540,
+    "individualID": 211,
+    "nlaps": 3,
+    "rtime": {
+      "seconds": 3328,
+      "nanos": 0
+    },
+    "adjtime": {
+      "seconds": 3836,
+      "nanos": 0
+    },
+    "posn": 7,
+    "raceID": 537,
+    "fleet": "Topper"
+  }
+]

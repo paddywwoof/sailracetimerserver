@@ -1,0 +1,19 @@
+/*net.mfashby.sailracetimerserver.RaceApiServiceTest.queryIndividuals*/
+[
+  {
+    "id": 611,
+    "boattypeID": 34,
+    "name": "Tom Watson",
+    "boatnum": "8620",
+    "ph": 100,
+    "btype": "Heron two-handed"
+  },
+  {
+    "id": 612,
+    "boattypeID": 97,
+    "name": "Tom Watson",
+    "boatnum": "8143",
+    "ph": 100,
+    "btype": "Heron single-handed"
+  }
+]

@@ -1,0 +1,1461 @@
+/*net.mfashby.sailracetimerserver.RaceApiServiceTest.queryRacesByMultipleSeriesId*/
+[
+  {
+    "id": 535,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 3,
+      "day": 24
+    },
+    "name": "SAT 24 3 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "P Gaunt",
+    "aood": "F Morgan",
+    "winddir": "N",
+    "windstr": "18",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 536,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 3,
+      "day": 24
+    },
+    "name": "SAT 24 3 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "P Gaunt",
+    "aood": "F Morgan",
+    "winddir": "N",
+    "windstr": "18",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 537,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 3,
+      "day": 31
+    },
+    "name": "SAT 31 3 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 5,
+    "ood": "T Gatti",
+    "aood": "S Gatti",
+    "winddir": "NNW",
+    "windstr": "20",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 538,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 3,
+      "day": 31
+    },
+    "name": "SAT 31 3 2007 R2",
+    "wholelegs": 8,
+    "partlegs": 7,
+    "ood": "T Gatti",
+    "aood": "S Gatti",
+    "winddir": "NNE",
+    "windstr": "23",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 539,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 4,
+      "day": 7
+    },
+    "name": "SAT 7 4 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "C Wood",
+    "aood": "S Wood",
+    "winddir": "SW",
+    "windstr": "5",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 540,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 4,
+      "day": 7
+    },
+    "name": "SAT 7 4 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "C Wood",
+    "aood": "S Wood",
+    "winddir": "SW",
+    "windstr": "4",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 541,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 4,
+      "day": 14
+    },
+    "name": "JND Long Trophy",
+    "wholelegs": 6,
+    "partlegs": 5,
+    "ood": "P Metcalfe",
+    "aood": "J Steward",
+    "winddir": "NNE",
+    "windstr": "4",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 542,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 4,
+      "day": 14
+    },
+    "name": "SAT 14 4 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 5,
+    "ood": "P Metcalfe",
+    "aood": "J Steward",
+    "winddir": "NE",
+    "windstr": "7",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 544,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 4,
+      "day": 28
+    },
+    "name": "SAT 28 4 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 5,
+    "ood": "Howard Chadwick",
+    "aood": "Helen Nicholson",
+    "winddir": "NE",
+    "windstr": "13",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 545,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 4,
+      "day": 28
+    },
+    "name": "SAT 28 4 2007 R2",
+    "wholelegs": 7,
+    "partlegs": 6,
+    "ood": "Howard Chadwick",
+    "aood": "Helen Nicholson",
+    "winddir": "NE",
+    "windstr": "14",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 546,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 5,
+      "day": 5
+    },
+    "name": "SAT 5 5 2007 R1",
+    "wholelegs": 4,
+    "partlegs": 4,
+    "ood": "J Restorick",
+    "aood": "S Walker",
+    "winddir": "SSE",
+    "windstr": "2",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 547,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 5,
+      "day": 5
+    },
+    "name": "SAT 5 5 2007 R2",
+    "wholelegs": 5,
+    "partlegs": 3,
+    "ood": "J Restorick",
+    "aood": "S Walker",
+    "winddir": "SE",
+    "windstr": "3",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 548,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 5,
+      "day": 12
+    },
+    "name": "SAT 12 5 2007 R1",
+    "wholelegs": 5,
+    "partlegs": 1,
+    "ood": "P Graham",
+    "aood": "S Walker",
+    "winddir": "wsw",
+    "windstr": "12",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 549,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 5,
+      "day": 12
+    },
+    "name": "SAT 12 5 2007 R2",
+    "wholelegs": 5,
+    "partlegs": 1,
+    "ood": "P Graham",
+    "aood": "S Walker",
+    "winddir": "ssw",
+    "windstr": "10",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 550,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 5,
+      "day": 19
+    },
+    "name": "SAT 19 5 2007 R1 (J1)",
+    "wholelegs": 7,
+    "partlegs": 7,
+    "ood": "B Wilson",
+    "aood": "B Lee",
+    "winddir": "W",
+    "windstr": "9",
+    "comments": "some junior series results need to be reconstructed!",
+    "finished": true
+  },
+  {
+    "id": 551,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 5,
+      "day": 19
+    },
+    "name": "Tankard Trophy",
+    "wholelegs": 7,
+    "partlegs": 7,
+    "ood": "B Wilson",
+    "aood": "B Lee",
+    "winddir": "W",
+    "windstr": "16",
+    "comments": "sue did last lap in 3 mins according to sheet!",
+    "finished": true
+  },
+  {
+    "id": 553,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 5,
+      "day": 26
+    },
+    "name": "SAT 26 5 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "R Crossland",
+    "aood": "G Kennedy",
+    "winddir": "W",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 554,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 5,
+      "day": 26
+    },
+    "name": "SAT 26 5 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "R Crossland",
+    "aood": "G Kennedy",
+    "winddir": "W",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 555,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 6,
+      "day": 2
+    },
+    "name": "SAT 2 6 2007 R1",
+    "wholelegs": 8,
+    "partlegs": 8,
+    "ood": "A Wood",
+    "aood": "D Statman",
+    "winddir": "",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 556,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 6,
+      "day": 2
+    },
+    "name": "SAT 2 6 2007 R2",
+    "wholelegs": 8,
+    "partlegs": 5,
+    "ood": "A Wood",
+    "aood": "D Statman",
+    "winddir": "SE",
+    "windstr": "8",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 557,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 6,
+      "day": 9
+    },
+    "name": "SAT 9 6 2007 R1",
+    "wholelegs": 7,
+    "partlegs": 7,
+    "ood": "R Phillips",
+    "aood": "S Woffenden",
+    "winddir": "ENE",
+    "windstr": "5",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 558,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 6,
+      "day": 9
+    },
+    "name": "SAT 9 6 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 6,
+    "ood": "R Phillips",
+    "aood": "S Woffenden",
+    "winddir": "NE",
+    "windstr": "6",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 559,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 6,
+      "day": 16
+    },
+    "name": "SAT 16 6 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "J Goodyear",
+    "aood": "B Burg",
+    "winddir": "SSW",
+    "windstr": "",
+    "comments": "no signing on sheet",
+    "finished": true
+  },
+  {
+    "id": 560,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 6,
+      "day": 16
+    },
+    "name": "SAT 16 6 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "J Goodyear",
+    "aood": "B Burg",
+    "winddir": "WSW",
+    "windstr": "",
+    "comments": "no signing on sheet",
+    "finished": true
+  },
+  {
+    "id": 561,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 6,
+      "day": 23
+    },
+    "name": "SAT 23 6 2007 R1 (J2)",
+    "wholelegs": 8,
+    "partlegs": 1,
+    "ood": "A Cowling",
+    "aood": "B Lee",
+    "winddir": "W",
+    "windstr": "10",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 562,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 6,
+      "day": 23
+    },
+    "name": "SAT 23 6 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "A Cowling",
+    "aood": "B Lee",
+    "winddir": "W",
+    "windstr": "10",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 563,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 7,
+      "day": 7
+    },
+    "name": "SAT 7 7 2007 R1 (Ladies)",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "Andew Fieldhouse",
+    "aood": "Bob Lee",
+    "winddir": "W",
+    "windstr": "",
+    "comments": "copied onto sheet as printer not working",
+    "finished": true
+  },
+  {
+    "id": 564,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 7,
+      "day": 7
+    },
+    "name": "SAT 7 7 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "Andew Fieldhouse",
+    "aood": "Bob Lee",
+    "winddir": "W",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 565,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 7,
+      "day": 14
+    },
+    "name": "SAT 14 7 2007 (J4)",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "N McInnes",
+    "aood": "K McInnes",
+    "winddir": "SW",
+    "windstr": "15",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 566,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 7,
+      "day": 14
+    },
+    "name": "Pursuit Race 1",
+    "wholelegs": 0,
+    "partlegs": 0,
+    "ood": "N McInnes",
+    "aood": "K McInnes",
+    "winddir": "SW",
+    "windstr": "15",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 567,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 7,
+      "day": 21
+    },
+    "name": "SAT 21 7 2007 R1",
+    "wholelegs": 5,
+    "partlegs": 4,
+    "ood": "G Burgess",
+    "aood": "B Kelly",
+    "winddir": "N",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 568,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 7,
+      "day": 21
+    },
+    "name": "SAT 21 7 2007 R2",
+    "wholelegs": 5,
+    "partlegs": 4,
+    "ood": "G Burgess",
+    "aood": "B Kelly",
+    "winddir": "N",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 569,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 7,
+      "day": 28
+    },
+    "name": "SAT 28 7 2007 R1",
+    "wholelegs": 7,
+    "partlegs": 2,
+    "ood": "P Appleby",
+    "aood": "Bob Lee/John Southall",
+    "winddir": "SW",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 570,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 7,
+      "day": 28
+    },
+    "name": "SAT 28 7 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "P Appleby",
+    "aood": "Bob Lee/John Southall",
+    "winddir": "W",
+    "windstr": "15",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 571,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 8,
+      "day": 4
+    },
+    "name": "SAT 4 8 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 2,
+    "ood": "B Waite",
+    "aood": "J Moreman",
+    "winddir": "SW",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 572,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 8,
+      "day": 4
+    },
+    "name": "SAT 4 8 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 2,
+    "ood": "B Waite",
+    "aood": "J Moreman",
+    "winddir": "W",
+    "windstr": "12",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 574,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 8,
+      "day": 11
+    },
+    "name": "Dobson Trophy",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "J Southall",
+    "aood": "R Woffenden",
+    "winddir": "WSW",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 575,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 8,
+      "day": 11
+    },
+    "name": "SAT 11 8 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "J Southall",
+    "aood": "R Woffenden",
+    "winddir": "SW",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 576,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 8,
+      "day": 18
+    },
+    "name": "SAT 18 8 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "M Pickard",
+    "aood": "B Pickard",
+    "winddir": "E",
+    "windstr": "5",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 577,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 8,
+      "day": 18
+    },
+    "name": "SAT 18 8 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "M Pickard",
+    "aood": "B Pickard",
+    "winddir": "SE",
+    "windstr": "3",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 578,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 8,
+      "day": 25
+    },
+    "name": "SAT 25 8 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "A Caunt",
+    "aood": "T Kelly",
+    "winddir": "W",
+    "windstr": "12-15",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 579,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 8,
+      "day": 25
+    },
+    "name": "SAT 25 8 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "A Caunt",
+    "aood": "T Kelly",
+    "winddir": "W",
+    "windstr": "9-13",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 580,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 9,
+      "day": 1
+    },
+    "name": "SAT 1 9 2007 R1",
+    "wholelegs": 7,
+    "partlegs": 1,
+    "ood": "Bob Lee",
+    "aood": "D Collins",
+    "winddir": "W",
+    "windstr": "18",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 581,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 9,
+      "day": 1
+    },
+    "name": "SAT 1 9 2007 R2",
+    "wholelegs": 7,
+    "partlegs": 1,
+    "ood": "Bob Lee",
+    "aood": "D Collins",
+    "winddir": "W",
+    "windstr": "12-20",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 582,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 9,
+      "day": 8
+    },
+    "name": "Outhwaite Cup",
+    "wholelegs": 7,
+    "partlegs": 1,
+    "ood": "A Cowling",
+    "aood": "Bob Lee",
+    "winddir": "nw",
+    "windstr": "3",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 583,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 9,
+      "day": 8
+    },
+    "name": "SAT 8 9 2007 R2",
+    "wholelegs": 4,
+    "partlegs": 1,
+    "ood": "A Cowling",
+    "aood": "Bob Lee",
+    "winddir": "nw",
+    "windstr": "3",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 584,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 9,
+      "day": 8
+    },
+    "name": "SAT 8 9 2007 R3",
+    "wholelegs": 0,
+    "partlegs": 0,
+    "ood": "R Parnaby",
+    "aood": "S Cowling",
+    "winddir": "",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 585,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 9,
+      "day": 15
+    },
+    "name": "SAT 15 9 2007 R1 (J6)",
+    "wholelegs": 5,
+    "partlegs": 1,
+    "ood": "T Hattersley",
+    "aood": "T Bradley",
+    "winddir": "SW",
+    "windstr": "5",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 586,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 9,
+      "day": 15
+    },
+    "name": "SAT 15 9 2007 R2",
+    "wholelegs": 5,
+    "partlegs": 1,
+    "ood": "T Hattersley",
+    "aood": "P Bradley",
+    "winddir": "SW",
+    "windstr": "6",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 587,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 9,
+      "day": 22
+    },
+    "name": "SAT 22 9 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "J Simms",
+    "aood": "A Simms",
+    "winddir": "SW",
+    "windstr": "12-15",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 588,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 9,
+      "day": 22
+    },
+    "name": "SAT 22 9 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "J Simms",
+    "aood": "A Simms",
+    "winddir": "SSW",
+    "windstr": "8",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 589,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 9,
+      "day": 29
+    },
+    "name": "SAT 29 9 2007 R1",
+    "wholelegs": 7,
+    "partlegs": 6,
+    "ood": "N Ashurst",
+    "aood": "S Woffenden",
+    "winddir": "NE",
+    "windstr": "7",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 590,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 9,
+      "day": 29
+    },
+    "name": "SAT 29 9 2007 R2",
+    "wholelegs": 7,
+    "partlegs": 6,
+    "ood": "N Ashurst",
+    "aood": "S Woffenden",
+    "winddir": "NE",
+    "windstr": "5",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 591,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 10,
+      "day": 6
+    },
+    "name": "SAT 6 10 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 3,
+    "ood": "M Bower",
+    "aood": "D Statman",
+    "winddir": "S",
+    "windstr": "3",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 592,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 10,
+      "day": 6
+    },
+    "name": "SAT 6 10 2007 R2 Pursuit Race 2",
+    "wholelegs": 0,
+    "partlegs": 0,
+    "ood": "M Bower",
+    "aood": "D Statman",
+    "winddir": "S",
+    "windstr": "2",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 593,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 10,
+      "day": 13
+    },
+    "name": "SAT 13 10 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 7,
+    "ood": "D Statman",
+    "aood": "J Doré",
+    "winddir": "S",
+    "windstr": "3",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 594,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 10,
+      "day": 13
+    },
+    "name": "SAT 13 10 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 2,
+    "ood": "D Statman",
+    "aood": "J Doré",
+    "winddir": "S",
+    "windstr": "5",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 595,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 10,
+      "day": 20
+    },
+    "name": "SAT 20 10 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 3,
+    "ood": "J Cheetham",
+    "aood": "G Kaye",
+    "winddir": "S",
+    "windstr": "",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 596,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 10,
+      "day": 20
+    },
+    "name": "SAT 20 10 2007 R2",
+    "wholelegs": 4,
+    "partlegs": 1,
+    "ood": "J Cheetham",
+    "aood": "G Kaye",
+    "winddir": "SSW",
+    "windstr": "6",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 597,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 10,
+      "day": 27
+    },
+    "name": "SAT 27 10 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "Jo Beard",
+    "aood": "Glenis Burgess",
+    "winddir": "S",
+    "windstr": "12",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 598,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 10,
+      "day": 27
+    },
+    "name": "SAT 27 10 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "Jo Beard",
+    "aood": "Glenis Burgess",
+    "winddir": "S",
+    "windstr": "10",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 809,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 4,
+      "day": 16
+    },
+    "name": "WED 16 4 2008 R1",
+    "wholelegs": 6,
+    "partlegs": 5,
+    "ood": "A Fieldhouse",
+    "aood": "P Robinson",
+    "winddir": "E",
+    "windstr": "?",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 810,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 4,
+      "day": 23
+    },
+    "name": "WED 23 4 2008 R1",
+    "wholelegs": 5,
+    "partlegs": 1,
+    "ood": "P.Appleby",
+    "aood": "D.Stewart",
+    "winddir": "SW",
+    "windstr": "1-5",
+    "comments": "Wind dropped to practically nil afer reasonable start",
+    "finished": true
+  },
+  {
+    "id": 811,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 4,
+      "day": 30
+    },
+    "name": "WED 30 4 2008 R1",
+    "wholelegs": 6,
+    "partlegs": 6,
+    "ood": "A Caunt",
+    "aood": "--------",
+    "winddir": "NW var.",
+    "windstr": "3var.",
+    "comments": "AOOD not renewed membership",
+    "finished": true
+  },
+  {
+    "id": 812,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 5,
+      "day": 7
+    },
+    "name": "WED 7 5 2008 R1",
+    "wholelegs": 6,
+    "partlegs": 5,
+    "ood": "J Goodyear",
+    "aood": "G Kennedy",
+    "winddir": "ENE",
+    "windstr": "10",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 813,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 5,
+      "day": 14
+    },
+    "name": "WED 14 5 2008 R1",
+    "wholelegs": 5,
+    "partlegs": 5,
+    "ood": "R Heath",
+    "aood": "S Heath",
+    "winddir": "N",
+    "windstr": "7-15",
+    "comments": "initially strong",
+    "finished": true
+  },
+  {
+    "id": 814,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 5,
+      "day": 21
+    },
+    "name": "WED 21 5 2008 R1",
+    "wholelegs": 6,
+    "partlegs": 5,
+    "ood": "Benn Kelly",
+    "aood": "Paul Bradley",
+    "winddir": "NE",
+    "windstr": "10-15",
+    "comments": "Paper laps 7, Computer laps 6, various errors",
+    "finished": true
+  },
+  {
+    "id": 815,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 5,
+      "day": 28
+    },
+    "name": "WED 28 5 2008 R1",
+    "wholelegs": 4,
+    "partlegs": 3,
+    "ood": "J Simms",
+    "aood": "A Simms",
+    "winddir": "pres.NE",
+    "windstr": "3-4",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 816,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 6,
+      "day": 4
+    },
+    "name": "WED 4 6 2008 R1",
+    "wholelegs": 5,
+    "partlegs": 1,
+    "ood": "N McInnes",
+    "aood": "K McInnes",
+    "winddir": "SW",
+    "windstr": "5-8",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 817,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 6,
+      "day": 11
+    },
+    "name": "WED 11 6 2008 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "C Wood",
+    "aood": "S Wood",
+    "winddir": "SW",
+    "windstr": "10-15",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 818,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 6,
+      "day": 18
+    },
+    "name": "WED 18 6 2008 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "B Wilson",
+    "aood": "B Lee",
+    "winddir": "SW",
+    "windstr": "10-15",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 819,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 6,
+      "day": 25
+    },
+    "name": "WED 25 6 2008 R1",
+    "wholelegs": 5,
+    "partlegs": 1,
+    "ood": "M Bower",
+    "aood": "A Cowling",
+    "winddir": "SW",
+    "windstr": "15",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 820,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 7,
+      "day": 2
+    },
+    "name": "WED 2 7 2008 R1",
+    "wholelegs": 5,
+    "partlegs": 1,
+    "ood": "J Southall",
+    "aood": "A Ross",
+    "winddir": "S",
+    "windstr": "7-1",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 821,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 7,
+      "day": 9
+    },
+    "name": "WED 9 7 2008 R1",
+    "wholelegs": 6,
+    "partlegs": 6,
+    "ood": "P Gaunt",
+    "aood": "B Gaunt",
+    "winddir": "E",
+    "windstr": "5",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 822,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 7,
+      "day": 16
+    },
+    "name": "WED 16 7 2008 R1",
+    "wholelegs": 4,
+    "partlegs": 1,
+    "ood": "John Restorick",
+    "aood": "G Kaye",
+    "winddir": "W",
+    "windstr": "10",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 823,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 7,
+      "day": 23
+    },
+    "name": "WED 23 7 2008 R1",
+    "wholelegs": 6,
+    "partlegs": 4,
+    "ood": "M Pickard",
+    "aood": "B Pickard",
+    "winddir": "NE",
+    "windstr": "5-7",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 824,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 7,
+      "day": 30
+    },
+    "name": "WED 30 7 2008 R1",
+    "wholelegs": 6,
+    "partlegs": 7,
+    "ood": "Glenis",
+    "aood": "J Horton",
+    "winddir": "",
+    "windstr": "0-4",
+    "comments": "Wind dropped right off",
+    "finished": true
+  },
+  {
+    "id": 825,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 8,
+      "day": 6
+    },
+    "name": "WED 6 8 2008 R1",
+    "wholelegs": 4,
+    "partlegs": 1,
+    "ood": "C Dufton",
+    "aood": "G Burgess",
+    "winddir": "S",
+    "windstr": "0-1",
+    "comments": "Course on left of Tarn only",
+    "finished": true
+  },
+  {
+    "id": 826,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 8,
+      "day": 13
+    },
+    "name": "WED 13 8 2008 R1",
+    "wholelegs": 5,
+    "partlegs": 1,
+    "ood": "H Chadwick",
+    "aood": "S Chadwick",
+    "winddir": "SW",
+    "windstr": "2-5",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 827,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 8,
+      "day": 20
+    },
+    "name": "WED 20 8 2008 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "A Wood",
+    "aood": "T Burnett",
+    "winddir": "SSW",
+    "windstr": "3-5",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 828,
+    "seriesID": 18,
+    "rdate": {
+      "year": 2008,
+      "month": 8,
+      "day": 27
+    },
+    "name": "WED 27 8 2008 R1",
+    "wholelegs": 7,
+    "partlegs": 1,
+    "ood": "P Graham",
+    "aood": "H.Graham/Don Goode",
+    "winddir": "SW",
+    "windstr": "10-12",
+    "comments": "Gusty",
+    "finished": true
+  }
+]

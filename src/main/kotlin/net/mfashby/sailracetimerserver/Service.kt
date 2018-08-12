@@ -1,5 +1,6 @@
 package net.mfashby.sailracetimerserver
 
+import org.slf4j.LoggerFactory
 import java.io.Closeable
 import java.sql.*
 import java.time.Duration
@@ -7,40 +8,76 @@ import java.time.Duration
 const val GENERATED_KEY = "GENERATED_KEY"
 
 class RaceApiService(url: String, user: String, password: String): Closeable {
-    private val connection = DriverManager.getConnection(url, user, password)
+    private val logger = LoggerFactory.getLogger(RaceApiService::class.java)
+    private var connection: Connection
+
+    init {
+        logger.info("Connecting to $url user $user password $password")
+        while (true) {
+            try {
+                connection = DriverManager.getConnection(url, user, password)
+                break
+            } catch (x: Exception) {
+                logger.info("Failed connection $x retrying")
+                Thread.sleep(500)
+            }
+        }
+    }
 
     override fun close() {
         connection.close()
     }
 
-    private fun <T> ResultSet.readObjects(block: (ResultSet) -> T): List<T> {
-        val lst = mutableListOf<T>()
-        while (next()) lst.add(block(this))
-        return lst
+    /**
+     * AUTH
+     */
+    private fun ResultSet.readUser(): User =
+            User(
+                    id = getInt("id"),
+                    name = getString("name"),
+                    password = getString("password"),
+                    level = getInt("level")
+            )
+
+    fun getAndValidateUser(name: String, password: String): User? {
+        val stmt = connection.prepareStatement("SELECT id,name,password,level FROM user WHERE name = ?")
+        stmt.setString(1, name)
+        val user = stmt.executeQuery().readOne { it.readUser() }
+        return if (user?.password == password) user else null
     }
 
-    private fun <T> ResultSet.readOne(block: (ResultSet) -> T): T? =
-        if (next()) block(this) else null
-
-    private fun ResultSet.readSeries(): Series =
-        Series(id = getInt("id"),
-               name = getString("name"),
-               ntocount = getInt("ntocount"),
-               weight = getInt("weight"))
-
-    private fun PreparedStatement.oneKey(): Int =
-            generatedKeys.readOne { it.getInt(GENERATED_KEY) }
-                    ?: throw IllegalStateException("No generated key")
-
-    fun getAllSeries(): List<Series> =
-            connection.prepareStatement("SELECT id, name, ntocount, weight FROM series")
-                .executeQuery()
-                .readObjects { it.readSeries() }
-
-    fun getSeries(id: Int): Series? {
-        val stmt = connection.prepareStatement("SELECT id, name, ntocount, weight FROM series WHERE id = ?")
+    fun getUserById(id: Int): User? {
+        val stmt = connection.prepareStatement("SELECT id,name,password,level FROM user WHERE id = ?")
         stmt.setInt(1, id)
-        return stmt.executeQuery().readOne { it.readSeries() }
+        return stmt.executeQuery().readOne { it.readUser() }
+    }
+
+    /**
+     * SERIES
+     */
+    private fun ResultSet.readSeries(): Series =
+            Series(id = getInt("id"),
+                    name = getString("name"),
+                    ntocount = getInt("ntocount"),
+                    weight = getInt("weight"))
+
+    fun getSeries(id: Int) : Series? {
+        val params = idParam(id)
+        return getSeries(params).firstOrNull()
+    }
+
+    fun getSeries(params: Map<String, List<String>>): List<Series> {
+        val select = "SELECT id, name, ntocount, weight FROM series"
+        val wheres = mutableListOf<String>()
+        val sqlParams = mutableListOf<Any>()
+
+        params["id"]?.let {
+            wheres.add("id IN (${repeatJoin("?", ",", it.size)})")
+            sqlParams.addAll(it.map { it.toInt() })
+        }
+
+        return addLimitAndSortAndExecute(params, select, wheres, sqlParams)
+                .readObjects{ it.readSeries() }
     }
 
     fun addSeries(s: Series): Series {
@@ -50,7 +87,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         stmt.setInt(2, s.ntocount)
         stmt.setInt(3, s.weight)
         stmt.executeUpdate()
-        return s.copy(id = stmt.oneKey())
+        return s.copy(id = stmt.oneGeneratedKey())
     }
 
     fun updateSeries(s: Series): Series {
@@ -69,13 +106,9 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return stmt.executeUpdate() == 1
     }
 
-    fun validateUser(name: String, password: String): Boolean {
-        val stmt = connection.prepareStatement("SELECT password FROM user WHERE name = ?")
-        stmt.setString(1, name)
-        val actualPw = stmt.executeQuery().readOne { it.getString("password") }
-        return password == actualPw
-    }
-
+    /**
+     * RACE
+     */
     private fun ResultSet.readRace(): Race =
             Race(id = getInt("id"),
                 seriesID = getInt("seriesID"),
@@ -88,7 +121,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
                 winddir = getString("winddir"),
                 windstr = getString("windstr"),
                 comments = getString("comments"),
-                flg = getBoolean("flg"))
+                finished = getBoolean("flg"))
 
     fun getAllRaces(): List<Race> =
             connection.prepareStatement(
@@ -97,16 +130,27 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
              .readObjects { it.readRace() }
 
     fun getRace(id: Int): Race? {
-        val stmt = connection.prepareStatement(
-                "SELECT id,seriesID,rdate,name,wholelegs,partlegs,ood,aood,winddir,windstr,comments,flg FROM race WHERE id = ?"
-        )
-        stmt.setInt(1, id)
-        return stmt.executeQuery().readOne{ it.readRace() }
+        val params = idParam(id)
+        return getRaces(params).firstOrNull()
     }
 
-    fun PreparedStatement.setIntOpt(parameterIndex: Int, value: Int?) =
-            value?.let { setInt(parameterIndex, it) }
-                 ?:let { setNull(parameterIndex, Types.INTEGER)}
+    private fun repeatJoin(string: String, separator: String, times: Int) =
+            Array(times) { _-> string}.joinToString(separator = separator)
+
+    fun getRaces(params: Map<String, List<String>>): List<Race> {
+        val select = "SELECT id,seriesID,rdate,name,wholelegs,partlegs,ood,aood,winddir,windstr,comments,flg FROM race"
+        val wheres = mutableListOf<String>()
+        val sqlParams = mutableListOf<Any>()
+
+        params["finished"]?.let {
+            wheres.add("flg = ?")
+            sqlParams.add(it[0].toBoolean())
+        }
+        addIdInClause(params, "id", wheres, sqlParams)
+        addIdInClause(params, "seriesID", wheres, sqlParams)
+        return addLimitAndSortAndExecute(params, select, wheres, sqlParams)
+                .readObjects{ it.readRace() }
+    }
 
     fun addRace(r: Race): Race {
         val stmt = connection.prepareStatement("INSERT INTO race (seriesID,rdate,name,wholelegs,partlegs,ood,aood,winddir,windstr,comments,flg) " +
@@ -122,9 +166,9 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         stmt.setString(8, r.winddir)
         stmt.setString(9, r.windstr)
         stmt.setString(10, r.comments)
-        stmt.setBoolean(11, r.flg)
+        stmt.setBoolean(11, r.finished)
         stmt.executeUpdate()
-        return r.copy(id = stmt.oneKey())
+        return r.copy(id = stmt.oneGeneratedKey())
     }
 
     fun updateRace(r: Race): Race {
@@ -141,6 +185,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
                 "comments = ?," +
                 "flg = ? " +
                 "WHERE id = ? ")
+
         stmt.setInt(1, r.seriesID)
         stmt.setDate(2, Date.valueOf(r.rdate))
         stmt.setString(3, r.name)
@@ -151,7 +196,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         stmt.setString(8, r.winddir)
         stmt.setString(9, r.windstr)
         stmt.setString(10, r.comments)
-        stmt.setBoolean(11, r.flg)
+        stmt.setBoolean(11, r.finished)
         stmt.setInt(12, r.id!!)
         stmt.executeUpdate()
         return r
@@ -163,6 +208,9 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return stmt.executeUpdate() == 1
     }
 
+    /**
+     * RESULT
+     */
     private fun ResultSet.readResult(): Result =
             Result(id = getInt("id"),
                    individualID = getInt("individualID"),
@@ -174,32 +222,21 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
                    fleet = getString("fleet"),
                    crew = getString("crew"))
 
-    fun getAllResults(): List<Result> =
-            connection.prepareStatement("SELECT id,individualID,nlaps,rtime,adjtime,posn,raceID,fleet,crew FROM result")
-                    .executeQuery().readObjects { it.readResult() }
+    fun getAllResults(): List<Result> = getResults(emptyMap())
 
     fun getResult(id: Int): Result? {
-        val stmt = connection.prepareStatement("SELECT id,individualID,nlaps,rtime,adjtime,posn,raceID,fleet,crew FROM result WHERE id = ?")
-        stmt.setInt(1, id)
-        return stmt.executeQuery().readOne { it.readResult() }
+        val params = idParam(id)
+        return getResults(params).firstOrNull()
     }
 
-    private fun String.toDuration(): Duration {
-        val tokens = split(":")
-        return Duration.ZERO
-                .plusHours(tokens[0].toLong())
-                .plusMinutes(tokens[1].toLong())
-                .plusSeconds(tokens[2].toLong())
-    }
-
-    fun Duration.toMySqlString(): String {
-        val hours = toHours()
-        val minutes = minusHours(hours)
-                .toMinutes()
-        val seconds = minusHours(hours)
-                .minusMinutes(minutes)
-                .seconds
-        return "$hours:$minutes:$seconds"
+    fun getResults(params: Map<String, List<String>>): List<Result> {
+        val select = "SELECT id,individualID,nlaps,rtime,adjtime,posn,raceID,fleet,crew FROM result"
+        val wheres = mutableListOf<String>()
+        val sqlParams = mutableListOf<Any>()
+        addIdInClause(params, "id", wheres, sqlParams)
+        addIdInClause(params, "raceID", wheres, sqlParams)
+        return addLimitAndSortAndExecute(params, select, wheres, sqlParams)
+                .readObjects{ it.readResult() }
     }
 
     fun addResult(r: Result): Result {
@@ -214,7 +251,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         stmt.setString(7, r.fleet)
         stmt.setString(8, r.crew)
         stmt.executeUpdate()
-        return r.copy(id = stmt.oneKey())
+        return r.copy(id = stmt.oneGeneratedKey())
     }
 
     fun updateResult(r: Result): Result {
@@ -238,6 +275,9 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return stmt.executeUpdate() == 1
     }
 
+    /**
+     * INDIVIDUAL
+     */
     private fun ResultSet.readIndividual(): Individual =
             Individual(id = getInt("id"),
                        boattypeID = getInt("boattypeID"),
@@ -247,14 +287,18 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
                        btype = getString("btype"))
 
     fun getAllIndividuals(): List<Individual> =
-            connection.prepareStatement("SELECT id,boattypeID,name,boatnum,ph,btype FROM individual")
-                    .executeQuery()
-                    .readObjects { it.readIndividual() }
+            getIndividuals(emptyMap())
 
-    fun getIndividual(id: Int): Individual? {
-        val stmt = connection.prepareStatement("SELECT id,boattypeID,name,boatnum,ph,btype FROM individual WHERE id = ?")
-        stmt.setInt(1, id)
-        return stmt.executeQuery().readOne { it.readIndividual() }
+    fun getIndividual(id: Int): Individual? =
+            getIndividuals(idParam(id)).firstOrNull()
+
+    fun getIndividuals(params: Map<String, List<String>>): List<Individual> {
+        val select = "SELECT id,boattypeID,name,boatnum,ph,btype FROM individual"
+        val wheres = mutableListOf<String>()
+        val sqlParams = mutableListOf<Any>()
+        addIdInClause(params, "id", wheres, sqlParams)
+        return addLimitAndSortAndExecute(params, select, wheres, sqlParams)
+                .readObjects{ it.readIndividual() }
     }
 
     fun addIndividual(r: Individual): Individual {
@@ -266,7 +310,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         stmt.setIntOpt(4, r.ph)
         stmt.setString(5, r.btype)
         stmt.executeUpdate()
-        return r.copy(id = stmt.oneKey())
+        return r.copy(id = stmt.oneGeneratedKey())
     }
 
     fun updateIndividual(r: Individual): Individual {
@@ -287,6 +331,9 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return stmt.executeUpdate() == 1
     }
 
+    /**
+     * BOATTYPE
+     */
     private fun ResultSet.readBoatType(): BoatType =
             BoatType(id = getInt("id"),
                     btype =  getString("btype"),
@@ -294,13 +341,18 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
                     pyn = getInt("pyn"))
 
     fun getAllBoatTypes(): List<BoatType> =
-            connection.prepareStatement("SELECT id,btype,fleet,pyn FROM boattype")
-                .executeQuery().readObjects { it.readBoatType() }
+            getBoatTypes(emptyMap())
 
-    fun getBoatType(id: Int): BoatType? {
-        val stmt = connection.prepareStatement("SELECT id,btype,fleet,pyn FROM boattype WHERE id = ?")
-        stmt.setInt(1, id)
-        return stmt.executeQuery().readOne { it.readBoatType() }
+    fun getBoatType(id: Int): BoatType? =
+            getBoatTypes(idParam(id)).firstOrNull()
+
+    fun getBoatTypes(params: Map<String, List<String>>): List<BoatType> {
+        val select = "SELECT id,btype,fleet,pyn FROM boattype"
+        val wheres = mutableListOf<String>()
+        val sqlParams = mutableListOf<Any>()
+        addIdInClause(params, "id", wheres, sqlParams)
+        return addLimitAndSortAndExecute(params, select, wheres, sqlParams)
+                .readObjects{ it.readBoatType() }
     }
 
     fun addBoatType(r: BoatType): BoatType {
@@ -310,7 +362,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         stmt.setString(2, r.fleet)
         stmt.setInt(3, r.pyn)
         stmt.executeUpdate()
-        return r.copy(id = stmt.oneKey())
+        return r.copy(id = stmt.oneGeneratedKey())
     }
 
     fun updateBoatType(r: BoatType): BoatType {
@@ -328,4 +380,91 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         stmt.setInt(1, id)
         return stmt.executeUpdate() == 1
     }
+
+    /**
+     * Add a clause of the form `somethingID IN (1,2,3)`
+     */
+    private fun addIdInClause(params: Map<String, List<String>>, col: String, wheres: MutableList<String>, sqlParams: MutableList<Any>) {
+        params[col]?.let {
+            wheres.add("$col IN (${repeatJoin("?", ",", it.size)})")
+            sqlParams.addAll(it.map { it.toInt() })
+        }
+    }
+
+    /**
+     * Add common parts to each query (limit= & sort= should be supported for all get queries)
+     */
+    private fun addLimitAndSortAndExecute(urlParams: Map<String, List<String>>,
+                                          select: String,
+                                          wheres: List<String>,
+                                          sqlParams: MutableList<Any>): ResultSet {
+        val where = if (wheres.isNotEmpty()) {
+            "WHERE ${wheres.joinToString(" AND ")}"
+        } else { "" }
+
+        val limit = urlParams["limit"]?.let {
+            "LIMIT ${it[0].toInt()}"
+        } ?: ""
+
+        val orderBy = urlParams["sort"]?.let { sortParams ->
+            "ORDER BY " + sortParams.joinToString(",") {
+                Sorting.valueOf(it).orderBy
+            }
+        } ?: ""
+
+        val sql = listOf(select, where, orderBy, limit).joinToString(" ")
+        val stmt = connection.prepareStatement(sql)
+        // Dumb index from 1
+        sqlParams.forEachIndexed { index, param -> stmt.setObject(index + 1, param) }
+        return stmt.executeQuery()
+    }
+
+    // Got to do sorting this way to prevent SQL injection
+    @Suppress("EnumEntryName")
+    private enum class Sorting(val orderBy: String) {
+        weight_desc("weight DESC"),
+        rdate_desc("rdate DESC"),
+        posn("posn ASC")
+    }
 }
+
+/**
+ * General DRY stuff
+ */
+private fun <T> ResultSet.readObjects(block: (ResultSet) -> T): List<T> {
+    val lst = mutableListOf<T>()
+    while (next()) lst.add(block(this))
+    return lst
+}
+
+private fun <T> ResultSet.readOne(block: (ResultSet) -> T): T? =
+        if (next()) block(this) else null
+
+private fun PreparedStatement.oneGeneratedKey(): Int =
+        generatedKeys.readOne { it.getInt(GENERATED_KEY) }
+                ?: throw IllegalStateException("No generated key")
+
+private fun PreparedStatement.setIntOpt(parameterIndex: Int, value: Int?) =
+        value?.let { setInt(parameterIndex, it) }
+             ?: setNull(parameterIndex, Types.INTEGER)
+
+
+private fun String.toDuration(): Duration {
+    val tokens = split(":")
+    return Duration.ZERO
+            .plusHours(tokens[0].toLong())
+            .plusMinutes(tokens[1].toLong())
+            .plusSeconds(tokens[2].toLong())
+}
+
+fun Duration.toMySqlString(): String {
+    val hours = toHours()
+    val minutes = minusHours(hours)
+            .toMinutes()
+    val seconds = minusHours(hours)
+            .minusMinutes(minutes)
+            .seconds
+    return "$hours:$minutes:$seconds"
+}
+
+fun idParam(id: Int) = mapOf(Pair("id", listOf(id.toString())))

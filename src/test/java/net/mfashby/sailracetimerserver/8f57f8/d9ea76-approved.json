@@ -1,0 +1,57 @@
+/*net.mfashby.sailracetimerserver.RaceApiServiceTest.queryRacesWithMax*/
+[
+  {
+    "id": 535,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 3,
+      "day": 24
+    },
+    "name": "SAT 24 3 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "P Gaunt",
+    "aood": "F Morgan",
+    "winddir": "N",
+    "windstr": "18",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 536,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 3,
+      "day": 24
+    },
+    "name": "SAT 24 3 2007 R2",
+    "wholelegs": 6,
+    "partlegs": 1,
+    "ood": "P Gaunt",
+    "aood": "F Morgan",
+    "winddir": "N",
+    "windstr": "18",
+    "comments": "",
+    "finished": true
+  },
+  {
+    "id": 537,
+    "seriesID": 11,
+    "rdate": {
+      "year": 2007,
+      "month": 3,
+      "day": 31
+    },
+    "name": "SAT 31 3 2007 R1",
+    "wholelegs": 6,
+    "partlegs": 5,
+    "ood": "T Gatti",
+    "aood": "S Gatti",
+    "winddir": "NNW",
+    "windstr": "20",
+    "comments": "",
+    "finished": true
+  }
+]

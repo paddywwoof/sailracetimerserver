@@ -11,13 +11,23 @@ class RaceApiServiceTest {
     private val underTest: RaceApiService = RaceApiService("jdbc:mysql://localhost:3306/yxsecnyo_ysc", "root", "example")
 
     @Test
-    fun getAllSeries() {
-        assertThat(underTest.getAllSeries(), sameJsonAsApproved())
+    fun getSeries() {
+        assertThat(underTest.getSeries(mapOf(Pair("id", listOf(18, 19).map { it.toString() }))), sameJsonAsApproved())
     }
 
     @Test
-    fun getSeries() {
-        assertThat(underTest.getSeries(18), sameJsonAsApproved())
+    fun getSeriesWithLimit() {
+        val params = mapOf(Pair("limit", listOf(10.toString())))
+        assertThat(underTest.getSeries(params), sameJsonAsApproved())
+    }
+
+    @Test
+    fun getSeriesWithSort() {
+        val params = mapOf(
+                Pair("limit", listOf(20.toString())),
+                Pair("sort", listOf("weight_desc"))
+        )
+        assertThat(underTest.getSeries(params), sameJsonAsApproved())
     }
 
     @Test
@@ -49,8 +59,36 @@ class RaceApiServiceTest {
     }
 
     @Test
-    fun getAllRaces() {
-        assertThat(underTest.getAllRaces(), sameJsonAsApproved())
+    fun getRaces() {
+        val query = mapOf(
+                Pair("seriesID", listOf(18.toString()))
+        )
+        assertThat(underTest.getRaces(query), sameJsonAsApproved())
+    }
+
+    @Test
+    fun queryRacesByMultipleSeriesId() {
+        val query = mapOf(
+                Pair("seriesID", listOf(18, 11).map { it.toString() })
+        )
+        assertThat(underTest.getRaces(query), sameJsonAsApproved())
+    }
+
+    @Test
+    fun queryRacesWithMax() {
+        val query = mapOf(
+                Pair("seriesID", listOf(18, 11).map { it.toString() }),
+                Pair("limit", listOf(3.toString()))
+        )
+        assertThat(underTest.getRaces(query), sameJsonAsApproved())
+    }
+
+    @Test
+    fun getFinishedRaces() {
+        val query = mapOf(
+                Pair("finished", listOf(true.toString()))
+        )
+        assertThat(underTest.getRaces(query), sameJsonAsApproved())
     }
 
     @Test
@@ -70,7 +108,7 @@ class RaceApiServiceTest {
                           winddir = "W",
                           windstr = "strong",
                           comments = "test",
-                          flg = false)
+                          finished = false)
         val created = underTest.addRace(create)
 
         // Add
@@ -96,6 +134,11 @@ class RaceApiServiceTest {
     @Test
     fun getResult() {
         assertThat(underTest.getResult(3605), sameJsonAsApproved())
+    }
+
+    @Test
+    fun queryResult() {
+        assertThat(underTest.getResults(mapOf(Pair("raceID", listOf(535, 537).map { it.toString() }))), sameJsonAsApproved())
     }
 
     @Test
@@ -133,6 +176,12 @@ class RaceApiServiceTest {
     @Test
     fun getIndividual() {
         assertThat(underTest.getIndividual(612), sameJsonAsApproved())
+    }
+
+    @Test
+    fun queryIndividual() {
+        val query = mapOf(Pair("id", listOf(611, 612).map { it.toString() }))
+        assertThat(underTest.getIndividuals(query), sameJsonAsApproved())
     }
 
     @Test

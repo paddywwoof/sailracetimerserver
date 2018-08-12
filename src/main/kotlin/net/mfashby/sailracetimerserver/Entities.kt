@@ -1,11 +1,12 @@
 package net.mfashby.sailracetimerserver
+import io.ktor.auth.Principal
 import java.time.Duration
 import java.time.LocalDate
 
 data class User(val id: Int? = null,
                 val name: String,
                 val password: String,
-                val level: Int)
+                val level: Int): Principal
 
 data class Series(val id: Int? = null,
                   val name: String = "",
@@ -23,7 +24,7 @@ data class Race(val id: Int? = null,
                 val winddir: String?,
                 val windstr: String?,
                 val comments: String?,
-                val flg: Boolean)
+                val finished: Boolean)
 
 data class Result(val id: Int? = null,
                   val individualID: Int?,

@@ -1,0 +1,63 @@
+/*net.mfashby.sailracetimerserver.RaceApiServiceTest.getSeriesWithLimit*/
+[
+  {
+    "id": 18,
+    "name": "Wednesday 2008",
+    "ntocount": 7,
+    "weight": 15
+  },
+  {
+    "id": 19,
+    "name": "Sunday 2008",
+    "ntocount": 12,
+    "weight": 16
+  },
+  {
+    "id": 14,
+    "name": "Frostbite 2007",
+    "ntocount": 6,
+    "weight": 5
+  },
+  {
+    "id": 13,
+    "name": "Wednesday 2007",
+    "ntocount": 8,
+    "weight": 3
+  },
+  {
+    "id": 12,
+    "name": "Sunday 2007",
+    "ntocount": 12,
+    "weight": 2
+  },
+  {
+    "id": 11,
+    "name": "Saturday 2007",
+    "ntocount": 14,
+    "weight": 1
+  },
+  {
+    "id": 20,
+    "name": "Saturday 2008",
+    "ntocount": 14,
+    "weight": 17
+  },
+  {
+    "id": 15,
+    "name": "Commodore W.E. 07",
+    "ntocount": 5,
+    "weight": 4
+  },
+  {
+    "id": 17,
+    "name": "Frostbite 2008",
+    "ntocount": 6,
+    "weight": 10
+  },
+  {
+    "id": 25,
+    "name": "Saturday 2009",
+    "ntocount": 14,
+    "weight": 20
+  }
+]
