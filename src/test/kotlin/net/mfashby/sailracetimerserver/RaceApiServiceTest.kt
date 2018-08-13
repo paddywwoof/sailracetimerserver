@@ -52,10 +52,10 @@ class RaceApiServiceTest {
 
     @Test
     fun validateUser() {
-        assertTrue(underTest.validateUser("ood", "720"))
-        assertFalse(underTest.validateUser("ood", "blahblah"))
-        assertFalse(underTest.validateUser("blahblah", "000"))
-        assertFalse(underTest.validateUser("", ""))
+        assertNotNull(underTest.getAndValidateUser("ood", "720"))
+        assertNull(underTest.getAndValidateUser("ood", "blahblah"))
+        assertNull(underTest.getAndValidateUser("blahblah", "000"))
+        assertNull(underTest.getAndValidateUser("", ""))
     }
 
     @Test
