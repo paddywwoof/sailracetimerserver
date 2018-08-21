@@ -170,12 +170,8 @@ fun Route.raceApi(raceApiService: RaceApiService) {
 
     route("/boattype") {
         get("/") {
-            call.respond(raceApiService.getAllBoatTypes())
-        }
-        get("/{id}") {
-            checkId { id ->
-                call.respond(raceApiService.getBoatType(id))
-            }
+            val query = call.request.queryParameters.toMap()
+            call.respond(raceApiService.getBoatTypes(query))
         }
         authenticate {
             post("/") {

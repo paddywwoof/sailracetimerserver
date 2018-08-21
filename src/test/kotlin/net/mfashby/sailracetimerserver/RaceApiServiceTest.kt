@@ -3,10 +3,12 @@ package net.mfashby.sailracetimerserver
 import com.github.karsaig.approvalcrest.matcher.Matchers.sameBeanAs
 import com.github.karsaig.approvalcrest.matcher.Matchers.sameJsonAsApproved
 import org.junit.Assert.*
+import org.junit.Ignore
 import org.junit.Test
 import java.time.Duration
 import java.time.LocalDate
 
+@Ignore
 class RaceApiServiceTest {
     private val underTest: RaceApiService = RaceApiService("jdbc:mysql://localhost:3306/yxsecnyo_ysc", "root", "example")
 

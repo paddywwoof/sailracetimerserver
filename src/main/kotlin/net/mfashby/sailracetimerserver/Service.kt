@@ -1,31 +1,31 @@
 package net.mfashby.sailracetimerserver
 
+import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource
 import org.slf4j.LoggerFactory
 import java.io.Closeable
 import java.sql.*
 import java.time.Duration
+import javax.naming.InitialContext
+import javax.naming.spi.InitialContextFactoryBuilder
+import javax.sql.DataSource
 
 const val GENERATED_KEY = "GENERATED_KEY"
+const val DATA_SOURCE = "jdbc/sailracedb"
 
-class RaceApiService(url: String, user: String, password: String): Closeable {
+class RaceApiService(url: String, user: String, password: String) {
     private val logger = LoggerFactory.getLogger(RaceApiService::class.java)
-    private var connection: Connection
+    private val source: DataSource
 
     init {
-        logger.info("Connecting to $url user $user password $password")
-        while (true) {
-            try {
-                connection = DriverManager.getConnection(url, user, password)
-                break
-            } catch (x: Exception) {
-                logger.info("Failed connection $x retrying")
-                Thread.sleep(500)
-            }
-        }
+        source = MysqlConnectionPoolDataSource()
+        source.setURL(url)
+        source.user = user
+        source.setPassword(password)
     }
 
-    override fun close() {
-        connection.close()
+    private inline fun <T> withConnection(wrap: (Connection) -> T): T {
+//        val dataSource = InitialContext().lookup(DATA_SOURCE) as DataSource
+        return source.connection.use { wrap(it) }
     }
 
     /**
@@ -39,14 +39,14 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
                     level = getInt("level")
             )
 
-    fun getAndValidateUser(name: String, password: String): User? {
+    fun getAndValidateUser(name: String, password: String): User? = withConnection { connection ->
         val stmt = connection.prepareStatement("SELECT id,name,password,level FROM user WHERE name = ?")
         stmt.setString(1, name)
         val user = stmt.executeQuery().readOne { it.readUser() }
         return if (user?.password == password) user else null
     }
 
-    fun getUserById(id: Int): User? {
+    fun getUserById(id: Int): User? = withConnection { connection ->
         val stmt = connection.prepareStatement("SELECT id,name,password,level FROM user WHERE id = ?")
         stmt.setInt(1, id)
         return stmt.executeQuery().readOne { it.readUser() }
@@ -76,11 +76,13 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
             sqlParams.addAll(it.map { it.toInt() })
         }
 
-        return addLimitAndSortAndExecute(params, select, wheres, sqlParams)
-                .readObjects{ it.readSeries() }
+        return addLimitAndSortAndExecute(params, select, wheres, sqlParams) {
+            it.readObjects{ it.readSeries() }
+        }
+
     }
 
-    fun addSeries(s: Series): Series {
+    fun addSeries(s: Series): Series = withConnection { connection ->
         val stmt = connection.prepareStatement("INSERT INTO series(name, ntocount, weight) VALUES  (?, ?, ?)",
                 Statement.RETURN_GENERATED_KEYS)
         stmt.setString(1, s.name)
@@ -90,7 +92,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return s.copy(id = stmt.oneGeneratedKey())
     }
 
-    fun updateSeries(s: Series): Series {
+    fun updateSeries(s: Series): Series = withConnection { connection ->
         val stmt = connection.prepareStatement("UPDATE series SET name = ?, ntocount = ?, weight = ? WHERE id = ?")
         stmt.setString(1, s.name)
         stmt.setInt(2, s.ntocount)
@@ -100,7 +102,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return s
     }
 
-    fun deleteSeries(id: Int): Boolean {
+    fun deleteSeries(id: Int): Boolean = withConnection { connection ->
         val stmt = connection.prepareStatement("DELETE FROM series WHERE id = ?")
         stmt.setInt(1, id)
         return stmt.executeUpdate() == 1
@@ -123,11 +125,12 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
                 comments = getString("comments"),
                 finished = getBoolean("flg"))
 
-    fun getAllRaces(): List<Race> =
-            connection.prepareStatement(
-            "SELECT id,seriesID,rdate,name,wholelegs,partlegs,ood,aood,winddir,windstr,comments,flg FROM race"
-            ).executeQuery()
-             .readObjects { it.readRace() }
+    fun getAllRaces(): List<Race> = withConnection { connection ->
+        return connection.prepareStatement(
+                "SELECT id,seriesID,rdate,name,wholelegs,partlegs,ood,aood,winddir,windstr,comments,flg FROM race")
+                .executeQuery()
+                .readObjects { it.readRace() }
+    }
 
     fun getRace(id: Int): Race? {
         val params = idParam(id)
@@ -148,11 +151,13 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         }
         addIdInClause(params, "id", wheres, sqlParams)
         addIdInClause(params, "seriesID", wheres, sqlParams)
-        return addLimitAndSortAndExecute(params, select, wheres, sqlParams)
-                .readObjects{ it.readRace() }
+        return addLimitAndSortAndExecute(params, select, wheres, sqlParams) {
+            it.readObjects{ it.readRace() }
+        }
+
     }
 
-    fun addRace(r: Race): Race {
+    fun addRace(r: Race): Race = withConnection { connection ->
         val stmt = connection.prepareStatement("INSERT INTO race (seriesID,rdate,name,wholelegs,partlegs,ood,aood,winddir,windstr,comments,flg) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 Statement.RETURN_GENERATED_KEYS)
@@ -171,7 +176,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return r.copy(id = stmt.oneGeneratedKey())
     }
 
-    fun updateRace(r: Race): Race {
+    fun updateRace(r: Race): Race = withConnection { connection ->
         val stmt = connection.prepareStatement("UPDATE race SET " +
                 "seriesID = ?," +
                 "rdate = ?," +
@@ -202,7 +207,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return r
     }
 
-    fun deleteRace(id: Int): Boolean {
+    fun deleteRace(id: Int): Boolean = withConnection { connection ->
         val stmt = connection.prepareStatement("DELETE FROM race WHERE id = ?")
         stmt.setInt(1, id)
         return stmt.executeUpdate() == 1
@@ -235,11 +240,13 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         val sqlParams = mutableListOf<Any>()
         addIdInClause(params, "id", wheres, sqlParams)
         addIdInClause(params, "raceID", wheres, sqlParams)
-        return addLimitAndSortAndExecute(params, select, wheres, sqlParams)
-                .readObjects{ it.readResult() }
+        return addLimitAndSortAndExecute(params, select, wheres, sqlParams) {
+            it.readObjects{ it.readResult() }
+        }
+
     }
 
-    fun addResult(r: Result): Result {
+    fun addResult(r: Result): Result = withConnection { connection ->
         val stmt = connection.prepareStatement("INSERT INTO result (individualID,nlaps,rtime,adjtime,posn,raceID,fleet,crew) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS)
         stmt.setIntOpt(1, r.individualID)
@@ -254,7 +261,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return r.copy(id = stmt.oneGeneratedKey())
     }
 
-    fun updateResult(r: Result): Result {
+    fun updateResult(r: Result): Result = withConnection { connection ->
         val stmt = connection.prepareStatement("UPDATE result SET individualID = ?,nlaps = ?,rtime = ?,adjtime = ?,posn = ?,raceID = ?,fleet = ?,crew = ? WHERE id = ?")
         stmt.setIntOpt(1, r.individualID)
         stmt.setIntOpt(2, r.nlaps)
@@ -269,7 +276,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return r
     }
 
-    fun deleteResult(id: Int): Boolean {
+    fun deleteResult(id: Int): Boolean = withConnection { connection ->
         val stmt = connection.prepareStatement("DELETE FROM result WHERE id = ?")
         stmt.setInt(1, id)
         return stmt.executeUpdate() == 1
@@ -297,11 +304,13 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         val wheres = mutableListOf<String>()
         val sqlParams = mutableListOf<Any>()
         addIdInClause(params, "id", wheres, sqlParams)
-        return addLimitAndSortAndExecute(params, select, wheres, sqlParams)
-                .readObjects{ it.readIndividual() }
+        return addLimitAndSortAndExecute(params, select, wheres, sqlParams) {
+            it.readObjects{ it.readIndividual() }
+        }
+
     }
 
-    fun addIndividual(r: Individual): Individual {
+    fun addIndividual(r: Individual): Individual = withConnection { connection ->
         val stmt = connection.prepareStatement("INSERT INTO individual (boattypeID,name,boatnum,ph,btype) VALUES (?,?,?,?,?)",
                                                Statement.RETURN_GENERATED_KEYS)
         stmt.setIntOpt(1, r.boattypeID)
@@ -313,7 +322,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return r.copy(id = stmt.oneGeneratedKey())
     }
 
-    fun updateIndividual(r: Individual): Individual {
+    fun updateIndividual(r: Individual): Individual = withConnection { connection ->
         val stmt = connection.prepareStatement("UPDATE individual SET boattypeID = ?,name = ?,boatnum = ?,ph = ?,btype = ? WHERE id = ?")
         stmt.setIntOpt(1, r.boattypeID)
         stmt.setString(2, r.name)
@@ -325,7 +334,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return r
     }
 
-    fun deleteIndividual(id: Int): Boolean {
+    fun deleteIndividual(id: Int): Boolean = withConnection { connection ->
         val stmt = connection.prepareStatement("DELETE FROM individual WHERE id = ?")
         stmt.setInt(1, id)
         return stmt.executeUpdate() == 1
@@ -351,11 +360,13 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         val wheres = mutableListOf<String>()
         val sqlParams = mutableListOf<Any>()
         addIdInClause(params, "id", wheres, sqlParams)
-        return addLimitAndSortAndExecute(params, select, wheres, sqlParams)
-                .readObjects{ it.readBoatType() }
+        return addLimitAndSortAndExecute(params, select, wheres, sqlParams) {
+            it.readObjects{ it.readBoatType() }
+        }
+
     }
 
-    fun addBoatType(r: BoatType): BoatType {
+    fun addBoatType(r: BoatType): BoatType = withConnection { connection ->
         val stmt = connection.prepareStatement("INSERT INTO boattype (btype,fleet,pyn) VALUES (?, ?, ?)",
                 Statement.RETURN_GENERATED_KEYS)
         stmt.setString(1, r.btype)
@@ -365,7 +376,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return r.copy(id = stmt.oneGeneratedKey())
     }
 
-    fun updateBoatType(r: BoatType): BoatType {
+    fun updateBoatType(r: BoatType): BoatType = withConnection { connection ->
         val stmt = connection.prepareStatement("UPDATE boattype SET btype = ?,fleet = ?,pyn = ? WHERE id = ?")
         stmt.setString(1, r.btype)
         stmt.setString(2, r.fleet)
@@ -375,7 +386,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         return r
     }
 
-    fun deleteBoatType(id: Int): Boolean {
+    fun deleteBoatType(id: Int): Boolean = withConnection { connection ->
         val stmt = connection.prepareStatement("DELETE FROM boattype WHERE id = ?")
         stmt.setInt(1, id)
         return stmt.executeUpdate() == 1
@@ -394,10 +405,11 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
     /**
      * Add common parts to each query (limit= & sort= should be supported for all get queries)
      */
-    private fun addLimitAndSortAndExecute(urlParams: Map<String, List<String>>,
+    private fun <T> addLimitAndSortAndExecute(urlParams: Map<String, List<String>>,
                                           select: String,
                                           wheres: List<String>,
-                                          sqlParams: MutableList<Any>): ResultSet {
+                                          sqlParams: MutableList<Any>,
+                                          transform: (ResultSet) -> T): T = withConnection { connection ->
         val where = if (wheres.isNotEmpty()) {
             "WHERE ${wheres.joinToString(" AND ")}"
         } else { "" }
@@ -416,7 +428,7 @@ class RaceApiService(url: String, user: String, password: String): Closeable {
         val stmt = connection.prepareStatement(sql)
         // Dumb index from 1
         sqlParams.forEachIndexed { index, param -> stmt.setObject(index + 1, param) }
-        return stmt.executeQuery()
+        return transform(stmt.executeQuery())
     }
 
     // Got to do sorting this way to prevent SQL injection

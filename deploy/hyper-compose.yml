@@ -3,16 +3,14 @@ version: '2'
 services:
   db:
     image: mfashby/ysc-mysql
-    build: mysql
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: example
-    ports:
-      - 3306:3306
+    restart: always
+    size: s4
 
   api-server:
     image: mfashby/ysc-apiserver
-    build: ..
     environment:
       - DB_URL=jdbc:mysql://db:3306/yxsecnyo_ysc
       - DB_USER=root
@@ -21,12 +19,21 @@ services:
       - SVR_HOST=0.0.0.0
     links:
       - db:db
+    restart: always
+    size: s4
 
   front:
     image: mfashby/ysc-front
-    build: front
-    environment:
-     - "EXTERNAL_URL=localhost:8080"
-     - "TLS_CONFIG=off"
+    environment: 
+     - ACME_AGREE=true
+     - EXTERNAL_URL=ysc.nsupdate.info
+     - TLS_CONFIG=martin@ashbysoft.com
     ports:
-      - 8080:8080
+      - 80:80
+      - 443:443
+    restart: always
+    links:
+      - api-server:api-server
+    size: s4
+    fip: 169.197.100.5
+

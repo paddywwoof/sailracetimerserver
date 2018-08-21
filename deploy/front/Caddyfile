@@ -1,0 +1,3 @@
+{$EXTERNAL_URL}
+tls {$TLS_CONFIG}
+proxy / http://api-server
