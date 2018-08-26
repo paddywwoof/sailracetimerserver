@@ -435,6 +435,7 @@ class RaceApiService(url: String, user: String, password: String) {
     @Suppress("EnumEntryName")
     private enum class Sorting(val orderBy: String) {
         weight_desc("weight DESC"),
+        rdate("rdate"),
         rdate_desc("rdate DESC"),
         posn("posn ASC")
     }
