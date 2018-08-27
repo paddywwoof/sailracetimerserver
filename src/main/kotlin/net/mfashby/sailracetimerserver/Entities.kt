@@ -2,7 +2,7 @@ package net.mfashby.sailracetimerserver
 import io.ktor.auth.Principal
 import java.time.Duration
 import java.time.LocalDate
-
+//test where commits go to after forking repo to paddywwoof
 data class User(val id: Int? = null,
                 val name: String,
                 val password: String,
