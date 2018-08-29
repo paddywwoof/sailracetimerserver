@@ -70,12 +70,7 @@ class RaceApiService(url: String, user: String, password: String) {
         val select = "SELECT id, name, ntocount, weight FROM series"
         val wheres = mutableListOf<String>()
         val sqlParams = mutableListOf<Any>()
-
-        params["id"]?.let {
-            wheres.add("id IN (${repeatJoin("?", ",", it.size)})")
-            sqlParams.addAll(it.map { it.toInt() })
-        }
-
+        addIdInClause(params, "id", wheres, sqlParams)
         return addLimitAndSortAndExecute(params, select, wheres, sqlParams) {
             it.readObjects{ it.readSeries() }
         }
@@ -390,6 +385,77 @@ class RaceApiService(url: String, user: String, password: String) {
         val stmt = connection.prepareStatement("DELETE FROM boattype WHERE id = ?")
         stmt.setInt(1, id)
         return stmt.executeUpdate() == 1
+    }
+
+    /**
+     * Update adjusted times for a given seriesID
+     * NB the code to make this sql statemet work with multiple series id is probably
+     * too messy to be worth implementing. Instead run this multiple times from the
+     * js end. Also doesn't do personal handicap or exclude_yorkshire_dales_visitor stuff
+     */
+    fun updateAdjustedTimes(id: Int): Int = withConnection { connection ->
+        val stmt = connection.prepareStatement("""UPDATE result AS r
+          LEFT JOIN individual AS i ON r.individualID = i.ID
+          LEFT JOIN boattype AS b ON i.boattypeID = b.ID
+          LEFT JOIN race AS e ON r.raceID = e.ID
+          LEFT JOIN (SELECT i.ID, b.fleet, MIN(b.pyn) AS minpyn FROM result r
+                  LEFT JOIN race c on r.raceID = c.ID
+                  LEFT JOIN individual i on i.ID = r.individualID
+                  LEFT JOIN boattype b on b.ID = i.boattypeID
+                  WHERE c.seriesID = ?
+                  GROUP BY i.ID, b.fleet) AS p ON p.ID = r.individualID AND p.fleet = b.fleet
+          LEFT JOIN (SELECT x.raceID, MAX(x.nlaps) AS maxlaps FROM result x GROUP BY x.raceID) AS q ON q.raceID = r.raceID
+          SET r.adjtime = IF((r.rtime = '24:00:00'), '24:00:00',
+          SEC_TO_TIME(TIME_TO_SEC(r.rtime) * 1200 / p.minpyn /
+                    (r.nlaps * e.wholelegs + e.partlegs) * e.wholelegs * q.maxlaps)), r.fleet = b.fleet
+          WHERE e.seriesID = ?""")
+        stmt.setInt(1, id)
+        stmt.setInt(2, id)
+        return stmt.executeUpdate()
+    }
+
+    /**
+     * Update positions for a given seriesID (done after updateAdjustedTimes())
+     * similar comment as above. Only does one seriesID. Also see fleet 'exclusive'
+     * comment below.
+     */
+    fun updatePositions(id: Int): Int = withConnection { connection ->
+        var cum_result: Int = 0 //executeUpdate returns 0 or num rows updated (prob 0 in all these cases
+        /*
+         * initially set positions to 0
+         */
+        val zero_stmnt = connection.prepareStatement("""UPDATE result r
+          LEFT JOIN race e ON r.raceID = e.ID SET r.posn = 0
+          WHERE r.adjtime > '00:00:00' AND e.seriesID  = ?""")
+        zero_stmnt.setInt(1, id)
+        cum_result += zero_stmnt.executeUpdate()
+        /*
+         * drop temp table
+         */
+        val drop_stmnt = connection.prepareStatement("DROP TABLE IF EXISTS pos")
+        cum_result += drop_stmnt.executeUpdate()
+        /*
+         * create temp table and calc postions
+         * TODO there was an option on old system to calculate positions based on fleet which
+         * added an extra condition to the join : `AND r1.fleet = r2.fleet` which may or may not be wanted
+         */
+        val create_stmnt = connection.prepareStatement("""CREATE TABLE pos (
+            SELECT r1.individualID, r1.raceID, (1+count(r2.adjtime)) AS posn
+            FROM result r1 LEFT OUTER JOIN result r2 ON r1.raceID = r2.raceID AND r2.adjtime < r1.adjtime
+            WHERE r1.posn < 1 GROUP BY r1.individualID, r1.raceID)""")
+        cum_result += create_stmnt.executeUpdate()
+        /*
+         * copy positions to result table
+         */
+        val updt_stmnt = connection.prepareStatement("""UPDATE result AS r
+            LEFT JOIN pos AS p ON r.individualID=p.individualID AND r.raceID=p.raceID
+            LEFT JOIN (
+                SELECT raceID, COUNT( * ) AS nind FROM result GROUP BY raceID
+                ) AS r2 ON r2.raceID = r.raceID
+            SET r.posn = IF((r.adjtime = '24:00:00'), GREATEST(15, r2.nind+1), p.posn)
+            WHERE r.adjtime > '00:00:00' AND NOT(p.raceID IS NULL)""")
+        cum_result += updt_stmnt.executeUpdate()
+        return cum_result
     }
 
     /**

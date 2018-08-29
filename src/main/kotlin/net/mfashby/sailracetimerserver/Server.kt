@@ -105,6 +105,24 @@ fun Route.raceApi(raceApiService: RaceApiService) {
                 }
             }
         }
+        /*
+         * i.e. .../api/series/updatetimes/68
+         *         /api/series/updatepositions/68
+         */
+        route("/updatetimes/{id}") {
+            get {
+                checkId { id: Int ->
+                    call.respond(raceApiService.updateAdjustedTimes(id))
+                }
+            }
+        }
+        route("/updatepositions/{id}") {
+            get {
+                checkId { id: Int ->
+                    call.respond(raceApiService.updatePositions(id))
+                }
+            }
+        }
     }
 
     route("/race") {
