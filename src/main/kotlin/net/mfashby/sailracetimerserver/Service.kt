@@ -358,7 +358,6 @@ class RaceApiService(url: String, user: String, password: String) {
         return addLimitAndSortAndExecute(params, select, wheres, sqlParams) {
             it.readObjects{ it.readBoatType() }
         }
-
     }
 
     fun addBoatType(r: BoatType): BoatType = withConnection { connection ->
@@ -456,6 +455,69 @@ class RaceApiService(url: String, user: String, password: String) {
             WHERE r.adjtime > '00:00:00' AND NOT(p.raceID IS NULL)""")
         cum_result += updt_stmnt.executeUpdate()
         return cum_result
+    }
+
+    /*
+     * Generate series headings for results display
+     */
+    private fun ResultSet.readRaceHeading(): RaceHeading =
+            RaceHeading(ID = getInt("ID"),
+                        name =  getString("name"))
+                    
+    fun getRacesForSeries(id: Int) : List<RaceHeading> = withConnection { connection ->
+        val stmnt = connection.prepareStatement("""SELECT race.ID, race.name FROM race
+            LEFT JOIN result ON race.ID=result.raceID
+            WHERE race.seriesID = ? AND race.flg=1
+            GROUP BY race.ID
+            ORDER BY race.rdate, race.name""")
+        stmnt.setInt(1, id)
+        val rs = stmnt.executeQuery()
+        return rs.readObjects {
+            it.readRaceHeading()
+        }
+    }
+
+    /*
+     * Generate individual/position for series
+     */            
+    fun getPositionsForSeries(id: Int) : List<SeriesPosition> = withConnection { connection ->
+        val stmnt = connection.prepareStatement("""SELECT i.name, i.boatnum,
+            b.fleet, b.btype, r.raceID, r.posn, r.individualID, i.boattypeID, i.ph
+            FROM individual i
+            LEFT JOIN boattype b ON i.boattypeID = b.ID
+            LEFT JOIN result r ON i.ID = r.individualID
+            LEFT JOIN race ON r.raceID = race.ID
+            WHERE race.seriesID = ?
+            ORDER BY i.name, b.fleet, i.boattypeID""")
+        stmnt.setInt(1, id)
+        val rs = stmnt.executeQuery()
+        var lst = mutableListOf<SeriesPosition>()
+        while(rs.next()){
+            var newsp = SeriesPosition(name = rs.getString("name"),
+                                       boatnum = rs.getString("boatnum"), 
+                                       fleet = rs.getString("fleet"),
+                                       btype = rs.getString("btype"),
+                                       individualID = rs.getInt("individualID"),
+                                       boattypeID = rs.getInt("boattypeID"),
+                                       ph = rs.getInt("ph"),
+                                       posnList = mutableListOf<RaceResults>())
+            var n = lst.lastIndex
+            if (lst.isEmpty() || lst[n].name != newsp.name ||
+                                 lst[n].fleet != newsp.fleet) {
+                lst.add(newsp)
+                n += 1
+            }
+            // diff boat results amalgamated but ++ added to indicate
+            if (lst[n].boatnum != newsp.boatnum && !lst[n].boatnum.endsWith("++")) {
+                lst[n].boatnum = lst[n].boatnum + "++"
+            }
+            if (lst[n].btype != newsp.btype && !lst[n].btype.endsWith("++")) {
+                lst[n].btype = lst[n].btype + "++"
+            }
+            // append this raceID/posn
+            lst[n].posnList.add(RaceResults(rs.getInt("raceID"), rs.getInt("posn")))
+        }
+        return lst
     }
 
     /**

@@ -123,6 +123,20 @@ fun Route.raceApi(raceApiService: RaceApiService) {
                 }
             }
         }
+        route("/getracesforseries/{id}") {
+            get {
+                checkId { id: Int ->
+                    call.respond(raceApiService.getRacesForSeries(id))
+                }
+            }
+        }
+        route("/getpositionsforseries/{id}") {
+            get {
+                checkId { id: Int ->
+                    call.respond(raceApiService.getPositionsForSeries(id))
+                }
+            }
+        }
     }
 
     route("/race") {

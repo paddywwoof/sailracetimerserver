@@ -47,3 +47,18 @@ data class Individual(val id: Int? = null,
                       val boatnum: String?,
                       val ph: Int?,
                       val btype: String?)
+
+data class RaceHeading(val ID: Int?, //TODO shouldn't be null for actual entered race
+                       val name: String?)
+
+data class RaceResults(val raceID: Int?,
+                       val posn: Int?)
+
+data class SeriesPosition(val name: String,
+                           var boatnum: String, // var to allow ++ appending
+                           val fleet: String?,
+                           var btype: String, // ++ TODO fix null entries in db
+                           val individualID: Int,
+                           val boattypeID: Int,
+                           val ph: Int?,
+                           val posnList: MutableList<RaceResults>)
