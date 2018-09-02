@@ -481,6 +481,7 @@ class RaceApiService(url: String, user: String, password: String) {
      * Generate individual/position for series
      */            
     fun getPositionsForSeries(id: Int) : List<SeriesPosition> = withConnection { connection ->
+        val series = getSeries(id) //TODO graceful return from here if null series
         val stmnt = connection.prepareStatement("""SELECT i.name, i.boatnum,
             b.fleet, b.btype, r.raceID, r.posn, r.individualID, i.boattypeID, i.ph
             FROM individual i
@@ -517,6 +518,33 @@ class RaceApiService(url: String, user: String, password: String) {
             // append this raceID/posn
             lst[n].posnList.add(RaceResults(rs.getInt("raceID"), rs.getInt("posn")))
         }
+        for (indvl in lst) {
+            indvl.posnList.sortWith(compareBy({it.posn}))
+            indvl.totScore = 0
+            indvl.totQualScore = 0
+            indvl.splitter = ""
+            indvl.posnList.forEachIndexed{i, p ->
+                indvl.totScore += p.posn
+                if (i < series!!.ntocount) {
+                    indvl.totQualScore += p.posn
+                    p.discard = false
+                } else {
+                    p.discard = true
+                }
+                indvl.splitter += "%02d".format(p.posn)
+            }
+            indvl.splitter += "99" // to ensure that less races is never better
+            indvl.avPosn = indvl.totScore / indvl.posnList.size.toFloat()
+            indvl.qualified = (indvl.posnList.size >= series!!.ntocount)
+            indvl.posnList.sortWith(compareBy({it.raceID})) // put back in date order
+        }
+        lst.sortWith(compareBy({
+            if (it.qualified) {
+                it.totQualScore
+            } else {
+                (5000.0f + it.avPosn * 100.0f).toInt() // bigger than any qualified entry
+            }
+        }, {it.splitter}))
         return lst
     }
 

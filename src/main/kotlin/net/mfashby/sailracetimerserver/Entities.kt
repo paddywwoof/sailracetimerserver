@@ -51,8 +51,9 @@ data class Individual(val id: Int? = null,
 data class RaceHeading(val ID: Int?, //TODO shouldn't be null for actual entered race
                        val name: String?)
 
-data class RaceResults(val raceID: Int?,
-                       val posn: Int?)
+data class RaceResults(val raceID: Int,
+                       val posn: Int,
+                       var discard: Boolean = false)
 
 data class SeriesPosition(val name: String,
                            var boatnum: String, // var to allow ++ appending
@@ -61,4 +62,9 @@ data class SeriesPosition(val name: String,
                            val individualID: Int,
                            val boattypeID: Int,
                            val ph: Int?,
+                           var totScore: Int = 0,
+                           var totQualScore: Int = 0,
+                           var splitter: String = "",
+                           var avPosn: Float = 0.0f,
+                           var qualified: Boolean = false,
                            val posnList: MutableList<RaceResults>)
